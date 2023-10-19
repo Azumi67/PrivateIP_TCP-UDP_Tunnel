@@ -174,7 +174,7 @@ apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/opiran-c
 **اسکریپت من**
 
 ```
-link
+bash <(curl -Ls https://raw.githubusercontent.com/Azumi67/PrivateIP-Tunnel/main/Private.sh --ipv4)
 ```
 
 
