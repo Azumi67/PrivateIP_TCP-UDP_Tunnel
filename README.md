@@ -105,3 +105,100 @@
 
 
   -----------------------------------
+
+  **تانل FRP-UDP سرور ایران**
+
+  <p align="right">
+  <img src="https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/aaaeff9c-4351-42b6-9013-6f21aa1fb2eb" alt="Image" />
+</p>
+
+ <div dir="rtl">&bull; در این کانفیگ از یک پرایوت ایپی برای خارج و دو پرایوت ایپی برای ایران استفاده کردیم.</div>
+  <div dir="rtl">&bull; چرا دو پرایوت ایپی برای ایران ؟ چون یک ایپی پرایوت ایران برای تانل و ایپی دیگر برای پورت استفاده خواهد شد</div>
+   <div dir="rtl">&bull; توکن و پورت تانل را وارد نمایید ( مقدار یکسان برای ایران و خارج)</div>
+    <div dir="rtl">&bull; ایپی پرایوت دوم ایران را وارد نمایید. سعی کنید ایپی پرایوت ها در جایی یادداشت کرده باشد</div>
+     <div dir="rtl">&bull; پورت وایرگارد اصلی شما 50820 میباشد. وایرگارد در سرور خارج نصب میشود</div>
+      <div dir="rtl">&bull; پورت وایرگارد جدید شما 50821 میباشد. endpoint شما به این صورت خواهد بود : IPV4-iran:50821</div>
+
+
+--------------------------------------
+**تانل UDP2RAW - سروی خارج**
+
+<p align="right">
+  <img src="https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/6e86c31a-2485-4fb2-b111-cdbf6418063e" alt="Image" />
+</p>
+
+ <div dir="rtl">&bull; در این تانل برعکس FRP، شما نیازی ندارید پورت جداگانه برای سرور ایران بدهید.</div>
+  <div dir="rtl">&bull; تنها نیاز هست که پرایوت ایپی خارج را در سرور ایران وارد نمایید بنابراین تنها به یک ایپی پرایوت برای هر دو سرور خارج و ایران نیاز داریم</div>
+   <div dir="rtl">&bull; پورت تانل را بدهید</div>
+   <div dir="rtl">&bull; پسورد تانل را وارد نمایید ( در هر دو سرور ایران و خارج یکسان میباشد)</div>
+    <div dir="rtl">&bull; پورت وایرگاردی که در سرور خارج مشخص کردید در اینجا وارد نمایید</div>
+     <div dir="rtl">&bull;  Raw-mode دلخواه خودتان را انتخاب کنید</div>
+
+-------------------------------------------
+**تانل UDP2RAW - سرور ایران**
+
+<p align="right">
+  <img src="https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/d44e9c46-4623-4ffb-a4bc-2dd507e370da" alt="Image" />
+</p>
+
+ <div dir="rtl">&bull; در سرور ایران، پورت تانل را همان مقداری که در سرور خارج گذاشتیم، قرار میدهیم</div>
+  <div dir="rtl">&bull; پسورد تانل را وارد میکنید ( در هر دو سرور ایران و خارج یکسان میباشد)</div>
+   <div dir="rtl">&bull; ایپی پرایوت خارج را وارد نمایید</div>
+   <div dir="rtl">&bull; پورت وایرگاردی که در خارج وارد کردید، اینجا هم وارد نمایید</div>
+    <div dir="rtl">&bull; Raw-mode دلخواه خود را انتخاب نمایید</div>
+     
+
+-------------------------------
+**اسکرین شات**
+<details>
+  <summary align="right">Click to reveal image</summary>
+  
+  <p align="right">
+    <img src="https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/3a83d4de-9196-410b-af78-671658163f0b" alt="menu screen" />
+  </p>
+</details>
+
+------------------------------------------
+![scri](https://github.com/Azumi67/FRP-V2ray-Loadbalance/assets/119934376/cbfb72ac-eff1-46df-b5e5-a3930a4a6651)
+**اسکریپت های کارآمد :**
+
+ <div dir="rtl">&bull; میتوانید از اسکریپت opiran vps optimizer یا هر اسکریپت دیگری استفاده نمایید.</div>
+ 
+ 
+```
+apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/opiran-club/VPS-Optimizer/main/optimizer.sh --ipv4)
+```
+
+-----------------------------------------------------
+![R (a2)](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/716fd45e-635c-4796-b8cf-856024e5b2b2)
+**اسکریپت من**
+
+```
+link
+```
+
+
+---------------------------------------------
+![R (7)](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/42c09cbb-2690-4343-963a-5deca12218c1)
+**تلگرام** 
+![R (6)](https://github.com/Azumi67/FRP-V2ray-Loadbalance/assets/119934376/f81bf6e1-cfed-4e24-b944-236f5c0b15d3) [اپیران](https://github.com/opiran-club)
+
+---------------------------------
+![R23 (1)](https://github.com/Azumi67/FRP-V2ray-Loadbalance/assets/119934376/18d12405-d354-48ac-9084-fff98d61d91c)
+**سورس ها**
+
+![R (6)](https://github.com/Azumi67/FRP-V2ray-Loadbalance/assets/119934376/be0dd34c-7b47-4d93-904c-eecf013d7b06) [سورس های FRP](https://github.com/fatedier/frp)
+
+![R (9)](https://github.com/Azumi67/FRP-V2ray-Loadbalance/assets/119934376/33388f7b-f1ab-4847-9e9b-e8b39d75deaa) [سورس های اپیران](https://github.com/opiran-club)
+
+![R (6)](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/8a486a00-c6c3-4b30-ba47-3416f9bc2ab3)[سورس udp2raw](https://github.com/wangyu-/udp2raw/)
+
+-----------------------------------------------------
+
+![youtube-131994968075841675](https://github.com/Azumi67/FRP-V2ray-Loadbalance/assets/119934376/24202a92-aff2-4079-a6c2-9db14cd0ecd1)
+**ویدیوی آموزش**
+
+-----------------------------------------
+
+Project Overview : Private IP with some of its tunnels
+---------------
