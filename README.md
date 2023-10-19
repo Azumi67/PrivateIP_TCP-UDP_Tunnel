@@ -4,7 +4,7 @@
 ![lang](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/627ecb66-0445-4c15-b2a0-59e02c7f7e09)
 **زبان - Languages**
 
-[انگلیسی - English](link)
+- [زبان English](https://github.com/Azumi67/PrivateIP-Tunnel/tree/main#project-overview--private-ip-with-some-of-its-tunnels)
 
 ------------------------
 ![check](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/13de8d36-dcfe-498b-9d99-440049c0cf14)
