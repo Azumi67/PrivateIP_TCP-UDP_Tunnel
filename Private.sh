@@ -519,7 +519,7 @@ do
     echo -e "| \e[92m$ip_addr \e[0m|"
 done
 echo "+---------------------------+"
-echo "Please save your private ip address in a notepad for future uses"
+echo -e "\e[93mPlease save your private IP address in a notepad for future uses\e[0m"
 }
 # private IP for Iran
 function iran_private_menu() {
@@ -656,7 +656,7 @@ do
     echo -e "| \e[92m$ip_addr \e[0m|"
 done
 echo "+---------------------------+"
-echo "Please save your private ip address in a notepad for future uses"
+echo -e "\e[93mPlease save your private IP address in a notepad for future uses\e[0m"
 }
 
 function TCP_menu() {
