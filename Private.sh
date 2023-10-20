@@ -466,7 +466,7 @@ ip_address="fd1d:fc98:b73e:b481::2"
 max_pings=4
 
 # Interval
-interval=100
+interval=30
 
 # Loop run
 while true
@@ -603,7 +603,7 @@ ip_address="fd1d:fc98:b73e:b481::1"
 max_pings=4
 
 # Interval
-interval=100
+interval=30
 
 # Loop run
 while true
