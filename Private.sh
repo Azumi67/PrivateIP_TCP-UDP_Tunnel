@@ -980,10 +980,6 @@ function FRPP_UDP_menu() {
     esac
 }
 
-# file haye frp ini ro remove mikonim
-rm frp_0.51.3_linux_amd64/frps.ini &>/dev/null
-rm frp_0.51.3_linux_amd64/frpc.ini &>/dev/null
-
 function frpp_kharej_menu() {
     clear
      echo +═══════════════════════════+
@@ -1116,7 +1112,7 @@ echo "Reloading daemon..." > /dev/null 2>&1
 function restart_service() {
     echo -e "\e[93mRestarting FRP service...\e[0m"
 
-    # Check 
+    # Check
         systemctl daemon-reload
         systemctl restart azumifrpc.service > /dev/null 2>&1
         
