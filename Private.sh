@@ -113,10 +113,9 @@ function main_menu() {
         echo -e "\e[93m╠════════════════════════════════════════════════════════════════╣\e[0m" 
         display_service_status                                 
 		display_service_statuss
-        echo -e "\e[92mJoin Opiran Telegram \e[34m@https://t.me/OPIranClub\e[0m\e[0m"
-        echo 
-        printf "\e[93m+ꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥꕥ+\e[0m\n" 
-
+ echo -e "\e[93m╔════════════════════════════════════════════════════════════════╗\e[0m"
+        echo -e   "\e[91m     ❚█══ \e[92mJoin Opiran Telegram \e[34m@https://t.me/OPIranClub\e[0m \e[91m══█❚\e[0m"
+        echo -e "\e[93m╠════════════════════════════════════════════════════════════════╣\e[0m"  
         echo -e "1. \e[96mInstallation-[Frp-Udp2raw]\e[0m"
 		echo -e "2. \e[92mPrivate IP\e[0m"
         echo -e "3. \e[94mTCP Tunnel\e[0m"
@@ -125,7 +124,7 @@ function main_menu() {
         echo -e "6. \e[93mRestart Service\e[0m"
         echo -e "7. \e[91mUninstall\e[0m"
         echo "0. Exit"
-      
+          printf "\e[93m╰─────────────────────────────────────────────────────────────────╯\e[0m\n" 
         read -e -p $'\e[5mEnter your choice Please: \e[0m' choice
 
         case $choice in
@@ -1328,51 +1327,51 @@ function udpp_menu() {
 }
 # status
 function display_service_status() {
-  sudo systemctl is-active azumifrpc.service &>/dev/null
+   sudo systemctl is-active azumifrpc.service &>/dev/null
   local frpc_status=$?
   if [[ $frpc_status -eq 0 ]]; then
-    frpc_status_msg="\e[92m\xE2\x9C\x94 FRP Kharej service is running\e[0m" 
+    frpc_status_msg="\e[92m\xE2\x9C\x94 FRP Kharej service is running\e[0m"
   else
-    frpc_status_msg="\e[91m\xE2\x9C\x98 FRP Kharej service is not running\e[0m" 
+    frpc_status_msg="\e[91m\xE2\x9C\x98 FRP Kharej service is not running\e[0m"
   fi
 
   sudo systemctl is-active azumifrps.service &>/dev/null
   local frps_status=$?
   if [[ $frps_status -eq 0 ]]; then
-    frps_status_msg="\e[92m\xE2\x9C\x94 FRP Iran service is running\e[0m" 
+    frps_status_msg="\e[92m\xE2\x9C\x94 FRP Iran service is running\e[0m"
   else
-    frps_status_msg="\e[91m\xE2\x9C\x98 FRP Iran service is not running\e[0m" 
+    frps_status_msg="\e[91m\xE2\x9C\x98 FRP Iran service is not running\e[0m"
   fi
 
-  # box
-  printf "\e[93m+-------------------------------------+\e[0m\n"  
-  printf "\e[93m| %-35b |\e[0m\n" "$frpc_status_msg"  
-  printf "\e[93m| %-35b |\e[0m\n" "$frps_status_msg"  
-  printf "\e[93m+-------------------------------------+\e[0m\n"  
+  # FRP service status
+  printf "\e[93m╭───────────────────────────────────────╮\e[0m\n"
+  printf "\e[93m  %-35b \e[0m\n" "$frpc_status_msg"     
+  printf "\e[93m  %-35b \e[0m\n" "$frps_status_msg"
+  printf "\e[93m╰───────────────────────────────────────╯\e[0m\n"
 }
 # status 2
 function display_service_statuss() {
-  sudo systemctl is-active azumi-udp2raws.service &>/dev/null
+   sudo systemctl is-active azumi-udp2raws.service &>/dev/null
   local udp2raws_status=$?
   if [[ $udp2raws_status -eq 0 ]]; then
-    udp2raws_status_msg="\e[92m\xE2\x9C\x94 udp2raw Kharej is running\e[0m" 
+    udp2raws_status_msg="\e[92m\xE2\x9C\x94 udp2raw Kharej is running\e[0m"
   else
-    udp2raws_status_msg="\e[91m\xE2\x9C\x98 udp2raw Kharej is not running\e[0m" 
+    udp2raws_status_msg="\e[91m\xE2\x9C\x98 udp2raw Kharej is not running\e[0m"
   fi
 
   sudo systemctl is-active azumi-udp2rawc.service &>/dev/null
   local udp2rawc_status=$?
   if [[ $udp2rawc_status -eq 0 ]]; then
-    udp2rawc_status_msg="\e[92m\xE2\x9C\x94 udp2raw Iran service is running\e[0m" 
+    udp2rawc_status_msg="\e[92m\xE2\x9C\x94 udp2raw Iran service is running\e[0m"
   else
-    udp2rawc_status_msg="\e[91m\xE2\x9C\x98 udp2raw iran is not running\e[0m" 
+    udp2rawc_status_msg="\e[91m\xE2\x9C\x98 udp2raw Iran is not running\e[0m"
   fi
 
-  # box
-  printf "\e[93m+-------------------------------------+\e[0m\n"  
-  printf "\e[93m| %-35b |\e[0m\n" "$udp2raws_status_msg"  
-  printf "\e[93m| %-35b |\e[0m\n" "$udp2rawc_status_msg"  
-  printf "\e[93m+-------------------------------------+\e[0m\n"  
+  # UDP2raw service status
+  printf "\e[93m╭───────────────────────────────────────╮\e[0m\n"
+  printf "\e[93m  %-35b \e[0m\n" "$udp2raws_status_msg"  
+  printf "\e[93m  %-35b \e[0m\n" "$udp2rawc_status_msg"
+  printf "\e[93m╰───────────────────────────────────────╯\e[0m\n"
 }
 function uninstall() {
     clear
