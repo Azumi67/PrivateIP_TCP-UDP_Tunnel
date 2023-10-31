@@ -70,7 +70,21 @@ function display_loading() {
 
   echo -e "\r\xE2\x98\xBA Service activated successfully! ~"
 }
+#logo2
+function display_logoo() {
+    echo -e "\e[92m$logoo\e[0m"
+}
+#art2
+logoo=$(cat << "EOF"
 
+  _____       _     _      
+ / ____|     (_)   | |     
+| |  __ _   _ _  __| | ___ 
+| | |_ | | | | |/ _` |/ _ \
+| |__| | |_| | | (_| |  __/
+ \_____|\__,_|_|\__,_|\___|
+EOF
+)
 #logo
 function display_logo() {
 echo -e "\033[1;96m$logo\033[0m"
@@ -430,7 +444,10 @@ function kharej_private_menu() {
       echo $'\e[92m(\e[91mO,O\e[92m)\e[0m'
       echo $'\e[92m(   ) \e[93mConfiguring kharej server\e[0m'
       echo $'\e[92m "-"\e[93m══════════════════════════\e[0m'
-      echo ""
+       display_logoo
+      printf "\e[93m╭────────────────────────────────────────────────────────────────────────────────────╮\e[0m\n"
+        echo $'\e[92m   Please make sure to remove any private IPs that you have created before proceeding\e[0m'
+      printf "\e[93m╰────────────────────────────────────────────────────────────────────────────────────╯\e[0m\n"
 	  display_notification $'\e[93mAdding private IP addresses for Kharej server...\e[0m'
     if [ -f "/etc/private.sh" ]; then
         rm /etc/private.sh
@@ -558,7 +575,10 @@ function iran_private_menu() {
       echo $'\e[92m(\e[91mO,O\e[92m)\e[0m'
       echo $'\e[92m(   ) \e[93mConfiguring Iran server\e[0m'
       echo $'\e[92m "-"\e[93m══════════════════════════\e[0m'
-      ech0 ""
+       display_logoo
+      printf "\e[93m╭────────────────────────────────────────────────────────────────────────────────────╮\e[0m\n"
+        echo $'\e[92m   Please make sure to remove any private IPs that you have created before proceeding\e[0m'
+      printf "\e[93m╰────────────────────────────────────────────────────────────────────────────────────╯\e[0m\n"
     	  display_notification $'\e[93mAdding private IP addresses for Iran server...\e[0m'
     if [ -f "/etc/private.sh" ]; then
         rm /etc/private.sh
