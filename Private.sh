@@ -875,7 +875,8 @@ After=network.target
 
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frps -c /root/frp_0.52.3_linux_$cpu_arch/frps.ini
-Restart=always
+Restart=on-failure
+RestartSec=5s
 User=root
 
 [Install]
@@ -1241,7 +1242,8 @@ After=network.target
 
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frps -c /root/frp_0.52.3_linux_$cpu_arch/frps.ini
-Restart=always
+Restart=on-failure
+RestartSec=5s
 User=root
 
 [Install]
