@@ -11,7 +11,7 @@
 **امکانات**
  <div dir="rtl">&bull; ساخت پرایوت ایپی و سرویس پینگ برای برقرار ماندن تانل بین دو سرور</div>
  <div dir="rtl">&bull; تانل TCP برای V2ray و Openvpn</div>
- <div dir="rtl">&bull; تانل UDP با استفاده از FRP و UDP2RAW</div>
+ <div dir="rtl">&bull; تانل UDP با استفاده از FRP و UDP2RAW با استفاده از ایپی 4 و 6 و پرایوت</div>
  <div dir="rtl">&bull; نمایش وضعیت سرویس تانل شما</div>
  <div dir="rtl">&bull; امکان ریست و حذف کردن سرویس</div>
  <div dir="rtl">&bull; وایرگارد، openvpn یا پنل v2ray را در سرور خارج نصب نمایید</div>
