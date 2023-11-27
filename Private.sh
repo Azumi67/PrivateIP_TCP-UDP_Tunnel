@@ -217,16 +217,22 @@ function frp_menu() {
 
     # (Ctrl+C)
     trap stop_loading INT
-    # ip forward
-    sysctl -w net.ipv4.ip_forward=1 &>/dev/null
-    sysctl -w net.ipv6.conf.all.forwarding=1 &>/dev/null
 
-    # dns
-    echo "nameserver 8.8.8.8" > /etc/resolv.conf
+ipv4_forwarding=$(sysctl -n net.ipv4.ip_forward)
+    if [[ $ipv4_forwarding -eq 1 ]]; then
+        echo "IPv4 forwarding is already enabled."
+    else
+        sysctl -w net.ipv4.ip_forward=1 &>/dev/null
+        echo "IPv4 forwarding has been enabled."
+    fi
 
-    # Apply sysctl settings to enable IPv4 and IPv6
-    sysctl -w net.ipv4.ip_forward=1 &>/dev/null
-    sysctl -w net.ipv6.conf.all.forwarding=1 &>/dev/null
+    ipv6_forwarding=$(sysctl -n net.ipv6.conf.all.forwarding)
+    if [[ $ipv6_forwarding -eq 1 ]]; then
+        echo "IPv6 forwarding is already enabled."
+    else
+        sysctl -w net.ipv6.conf.all.forwarding=1 &>/dev/null
+        echo "IPv6 forwarding has been enabled."
+    fi
 
     # DNS baraye install
     echo "nameserver 8.8.8.8" > /etc/resolv.conf
@@ -306,11 +312,21 @@ function udp_menu() {
     echo "nameserver 8.8.8.8" >> /etc/resolv.conf > /dev/null
     display_checkmark $'\e[92mTemporary DNS added.\e[0m'
 
-    # modify sysctl.conf
-    echo -e "\033[93mModifying sysctl.conf...\033[0m"
-    sed -i '/^#net\.ipv4\.ip_forward=/s/^#//' /etc/sysctl.conf > /dev/null
-    sed -i '/^#net\.ipv6\.conf\.all\.forwarding=/s/^#//' /etc/sysctl.conf > /dev/null
-    display_checkmark $'\e[92mIP forward enabled.\e[0m'
+ipv4_forwarding=$(sysctl -n net.ipv4.ip_forward)
+    if [[ $ipv4_forwarding -eq 1 ]]; then
+        echo "IPv4 forwarding is already enabled."
+    else
+        sysctl -w net.ipv4.ip_forward=1 &>/dev/null
+        echo "IPv4 forwarding has been enabled."
+    fi
+    
+    ipv6_forwarding=$(sysctl -n net.ipv6.conf.all.forwarding)
+    if [[ $ipv6_forwarding -eq 1 ]]; then
+        echo "IPv6 forwarding is already enabled."
+    else
+        sysctl -w net.ipv6.conf.all.forwarding=1 &>/dev/null
+        echo "IPv6 forwarding has been enabled."
+    fi
 
     # Azumi is working in the background
  (
