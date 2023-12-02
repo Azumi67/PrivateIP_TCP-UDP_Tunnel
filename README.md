@@ -7,6 +7,12 @@
 - [زبان English](https://github.com/Azumi67/PrivateIP-Tunnel/tree/main#project-overview--private-ip-with-some-of-its-tunnels)
 
 ------------------------
+![Update-Note--Arvin61r58](https://github.com/Azumi67/PrivateIP_TCP-UDP_Tunnel/assets/119934376/5d5f31fd-e49c-4030-a346-ad80bc6a2d61)**اپدیت**
+
+- ریست تایمر 6 ساعته برای تانل ها اضافه شد.
+- ببینید مشکل قطع شدن تانل را براتون برطرف کرده یا خیر.
+------------------
+
 ![check](https://github.com/Azumi67/PrivateIP-Tunnel/assets/119934376/13de8d36-dcfe-498b-9d99-440049c0cf14)
 **امکانات**
  <div dir="rtl">&bull; ساخت پرایوت ایپی و سرویس پینگ برای برقرار ماندن تانل بین دو سرور</div>
