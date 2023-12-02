@@ -815,7 +815,7 @@ After=network.target
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frpc -c /root/frp_0.52.3_linux_$cpu_arch/frpc.ini
 Restart=always
-RestartSec=21600
+RestartSec=21601
 User=root
 
 [Install]
@@ -1077,7 +1077,7 @@ After=network.target
 [Service]
 ExecStart=$udp2raw_exec -c -l [::]:${local_port} -r [${remote_address}]:${remote_port} -k ${password} --raw-mode ${raw_mode} -a
 Restart=always
-RestartSec=21600
+RestartSec=21601
 User=root
 
 [Install]
@@ -1187,7 +1187,7 @@ After=network.target
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frpc -c /root/frp_0.52.3_linux_$cpu_arch/frpc.ini
 Restart=always
-RestartSec=21600
+RestartSec=21601
 User=root
 
 [Install]
