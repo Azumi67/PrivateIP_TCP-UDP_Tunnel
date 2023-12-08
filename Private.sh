@@ -179,8 +179,8 @@ function main_menu() {
 }
 function rmve_cron() {
     entries_to_remove=(
-        "0 */2 * * * sh /etc/clear.sh"
-        "0 */2 * * * /etc/res.sh"
+        "0 */6 * * * sh /etc/clear.sh"
+        "0 */6 * * * /etc/res.sh"
     )
 
     existing_crontab=$(crontab -l)
@@ -215,7 +215,7 @@ EOF
 
     chmod +x /etc/res.sh
 
-    existing_entry="0 */2 * * * /etc/res.sh"
+    existing_entry="0 */6 * * * /etc/res.sh"
     existing_crontab=""
 
     existing_crontab=$(crontab -l 2>/dev/null)
@@ -225,7 +225,7 @@ EOF
     else
         new_crontab=$(echo -e "$existing_crontab\n0 */2 * * * /etc/res.sh\n")
         echo "$new_crontab" | crontab -
-        echo -e "\033[92m2 hour reset timer added!\033[0m"
+        echo -e "\033[92m6 hour reset timer added!\033[0m"
     fi
 
     echo -e "\033[92mIT IS DONE.!\033[0m"
@@ -245,7 +245,7 @@ EOF
 
     chmod +x /etc/res.sh
 
-    existing_entry="0 */2 * * * /etc/res.sh"
+    existing_entry="0 */6 * * * /etc/res.sh"
     existing_crontab=""
 
     existing_crontab=$(crontab -l 2>/dev/null)
@@ -255,7 +255,7 @@ EOF
     else
         new_crontab=$(echo -e "$existing_crontab\n0 */2 * * * /etc/res.sh\n")
         echo "$new_crontab" | crontab -
-        echo -e "\033[92m2 hour reset timer added!\033[0m"
+        echo -e "\033[92m6 hour reset timer added!\033[0m"
     fi
 
     echo -e "\033[92mIT IS DONE.!\033[0m"
