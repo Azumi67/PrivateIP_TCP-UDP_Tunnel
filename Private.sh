@@ -179,24 +179,23 @@ function main_menu() {
 }
 function rmve_cron() {
     entries_to_remove=(
-        "0 */6 * * * sh /etc/clear.sh"
         "0 */6 * * * /etc/res.sh"
     )
 
-    existing_crontab=$(crontab -l)
-    modified_crontab=$existing_crontab
-
-    for entry in "${entries_to_remove[@]}"; do
-        if [[ $modified_crontab == *"$entry"* ]]; then
-            modified_crontab=${modified_crontab//$entry/}
-        fi
-    done
-
-    if [[ $modified_crontab != $existing_crontab ]]; then
-        echo "$modified_crontab" | crontab -
-        echo -e "\033[92mDone!\033[0m"  # Display success message
+    if test -f /etc/res.sh; then
+        for entry in "${entries_to_remove[@]}"; do
+            existing_crontab=$(crontab -l 2>/dev/null)
+            if [[ $existing_crontab == *"$entry"* ]]; then
+                modified_crontab=${existing_crontab//$entry/}
+                echo "$modified_crontab" | crontab -
+                echo -e "\033[92mCron entry removed!\033[0m"
+                rm /etc/res.sh
+                return
+            fi
+        done
+        echo -e "\033[91mCron entry not found.\033[0m"
     else
-        echo -e "\033[91m\nIt doesn't exist..\033[0m"  # Display error message
+        echo -e "\033[91m/etc/res.sh file not found.\033[0m"
     fi
 }
 
@@ -223,7 +222,7 @@ EOF
     if [[ $existing_entry == *"$existing_crontab"* ]]; then
         echo -e "\033[91mCrontab already exists.\033[0m"
     else
-        new_crontab=$(echo -e "$existing_crontab\n0 */2 * * * /etc/res.sh\n")
+        new_crontab=$(echo -e "$existing_crontab\n0 */6 * * * /etc/res.sh\n")
         echo "$new_crontab" | crontab -
         echo -e "\033[92m6 hour reset timer added!\033[0m"
     fi
@@ -253,7 +252,7 @@ EOF
     if [[ $existing_entry == *"$existing_crontab"* ]]; then
         echo -e "\033[91mCrontab already exists.\033[0m"
     else
-        new_crontab=$(echo -e "$existing_crontab\n0 */2 * * * /etc/res.sh\n")
+        new_crontab=$(echo -e "$existing_crontab\n0 */6 * * * /etc/res.sh\n")
         echo "$new_crontab" | crontab -
         echo -e "\033[92m6 hour reset timer added!\033[0m"
     fi
