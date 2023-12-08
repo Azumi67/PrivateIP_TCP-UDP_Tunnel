@@ -177,6 +177,89 @@ function main_menu() {
         clear
     done
 }
+function rmve_cron() {
+    entries_to_remove=(
+        "0 */2 * * * sh /etc/clear.sh"
+        "0 */2 * * * /etc/res.sh"
+    )
+
+    existing_crontab=$(crontab -l)
+    modified_crontab=$existing_crontab
+
+    for entry in "${entries_to_remove[@]}"; do
+        if [[ $modified_crontab == *"$entry"* ]]; then
+            modified_crontab=${modified_crontab//$entry/}
+        fi
+    done
+
+    if [[ $modified_crontab != $existing_crontab ]]; then
+        echo "$modified_crontab" | crontab -
+        echo -e "\033[92mDone!\033[0m"  # Display success message
+    else
+        echo -e "\033[91m\nIt doesn't exist..\033[0m"  # Display error message
+    fi
+}
+
+
+function res_li() {
+    if test -f /etc/res.sh; then
+        rm /etc/res.sh
+    fi
+
+    cat <<EOF > /etc/res.sh
+#!/bin/bash
+kill -9 \$(pgrep frps)
+systemctl daemon-reload
+systemctl restart azumifrps
+EOF
+
+    chmod +x /etc/res.sh
+
+    existing_entry="0 */2 * * * /etc/res.sh"
+    existing_crontab=""
+
+    existing_crontab=$(crontab -l 2>/dev/null)
+
+    if [[ $existing_entry == *"$existing_crontab"* ]]; then
+        echo -e "\033[91mCrontab already exists.\033[0m"
+    else
+        new_crontab=$(echo -e "$existing_crontab\n0 */2 * * * /etc/res.sh\n")
+        echo "$new_crontab" | crontab -
+        echo -e "\033[92m2 hour reset timer added!\033[0m"
+    fi
+
+    echo -e "\033[92mIT IS DONE.!\033[0m"
+}
+
+function res_lk() {
+    if test -f /etc/res.sh; then
+        rm /etc/res.sh
+    fi
+
+    cat <<EOF > /etc/res.sh
+#!/bin/bash
+kill -9 \$(pgrep frpc)
+systemctl daemon-reload
+systemctl restart azumifrpc
+EOF
+
+    chmod +x /etc/res.sh
+
+    existing_entry="0 */2 * * * /etc/res.sh"
+    existing_crontab=""
+
+    existing_crontab=$(crontab -l 2>/dev/null)
+
+    if [[ $existing_entry == *"$existing_crontab"* ]]; then
+        echo -e "\033[91mCrontab already exists.\033[0m"
+    else
+        new_crontab=$(echo -e "$existing_crontab\n0 */2 * * * /etc/res.sh\n")
+        echo "$new_crontab" | crontab -
+        echo -e "\033[92m2 hour reset timer added!\033[0m"
+    fi
+
+    echo -e "\033[92mIT IS DONE.!\033[0m"
+}
 function installation_menu() {
     clear
     echo $'\e[92m ^ ^\e[0m'
@@ -748,6 +831,7 @@ clear
 }
 function kharej_tunnel_menu() {
     clear
+  
   echo $'\e[92m ^ ^\e[0m'
   echo $'\e[92m(\e[91mO,O\e[92m)\e[0m'
   echo $'\e[92m(   ) \e[93muKharej TCP Tunnel\e[0m'
@@ -813,7 +897,7 @@ After=network.target
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frpc -c /root/frp_0.52.3_linux_$cpu_arch/frpc.ini
 Restart=always
-RestartSec=21601
+RestartSec=10
 User=root
 
 [Install]
@@ -826,11 +910,13 @@ echo "Reloading daemon..." > /dev/null 2>&1
     systemctl enable azumifrpc > /dev/null 2>&1
 
     echo "Starting FRP  service..."
-    systemctl start azumifrpc
+    systemctl restart azumifrpc
+    res_lk
     display_checkmark $'\e[92mFRP Service started.\e[0m'
 }
 function iran_tunnel_menu() {
     clear
+    
     echo $'\e[92m ^ ^\e[0m'
     echo $'\e[92m(\e[91mO,O\e[92m)\e[0m'
     echo $'\e[92m(   ) \e[93mIran TCP Tunnel\e[0m'
@@ -891,7 +977,7 @@ After=network.target
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frps -c /root/frp_0.52.3_linux_$cpu_arch/frps.ini
 Restart=always
-RestartSec=21600
+RestartSec=10
 User=root
 
 [Install]
@@ -904,7 +990,8 @@ echo "Reloading daemon..." > /dev/null 2>&1
     systemctl enable azumifrps > /dev/null 2>&1
 
     echo "Starting FRP  service..."
-    systemctl start azumifrps
+    systemctl restart azumifrps
+    res_li
     display_checkmark $'\e[92mFRP Service started.\e[0m'
 }
 
@@ -997,7 +1084,7 @@ After=network.target
 [Service]
 ExecStart=$udp2raw_exec -s -l [::]:${local_port} -r 127.0.0.1:${remote_port} -k "${password}" --raw-mode ${raw_mode} -a
 Restart=always
-RestartSec=21600
+RestartSec=10
 User=root
 
 [Install]
@@ -1075,7 +1162,7 @@ After=network.target
 [Service]
 ExecStart=$udp2raw_exec -c -l [::]:${local_port} -r [${remote_address}]:${remote_port} -k ${password} --raw-mode ${raw_mode} -a
 Restart=always
-RestartSec=21601
+RestartSec=10
 User=root
 
 [Install]
@@ -1122,6 +1209,7 @@ function FRPP_UDP_menu() {
 
 function frpp_kharej_menu() {
   clear
+  
   echo $'\e[92m ^ ^\e[0m'
   echo $'\e[92m(\e[91mO,O\e[92m)\e[0m'
   echo $'\e[92m(   ) \e[93mFRP Kharej Tunnel\e[0m'
@@ -1185,7 +1273,7 @@ After=network.target
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frpc -c /root/frp_0.52.3_linux_$cpu_arch/frpc.ini
 Restart=always
-RestartSec=21601
+RestartSec=10
 User=root
 
 [Install]
@@ -1198,12 +1286,14 @@ echo "Reloading daemon..." > /dev/null 2>&1
     systemctl enable azumifrpc > /dev/null 2>&1
 
     echo "Starting FRP  service..."
-    systemctl start azumifrpc
+    systemctl restart azumifrpc
+    res_lk
     display_checkmark $'\e[92mFRP Service started.\e[0m'
 }
 
 function frpp_iran_menu() {
     clear
+    
     echo $'\e[92m ^ ^\e[0m'
     echo $'\e[92m(\e[91mO,O\e[92m)\e[0m'
     echo $'\e[92m(   ) \e[93mFRP Iran Tunnel\e[0m'
@@ -1263,7 +1353,7 @@ After=network.target
 [Service]
 ExecStart=/root/frp_0.52.3_linux_$cpu_arch/./frps -c /root/frp_0.52.3_linux_$cpu_arch/frps.ini
 Restart=always
-RestartSec=21600
+RestartSec=10
 User=root
 
 [Install]
@@ -1276,7 +1366,8 @@ echo "Reloading daemon..." > /dev/null 2>&1
     systemctl enable azumifrps > /dev/null 2>&1
 
     echo "Starting FRP  service..."
-    systemctl start azumifrps
+    systemctl restart azumifrps
+    res_li
     display_checkmark $'\e[92mFRP Service started.\e[0m'
 }
 function restart_service() {
@@ -1450,7 +1541,7 @@ function udp_uninstall_menu() {
 function frp_uninstall_menu() {
     clear
     echo "Uninstalling FRP..."
-
+    rmve_cron
     # Stop and disable azumifrps.service
     if systemctl is-active --quiet azumifrps; then
         systemctl stop azumifrps > /dev/null 2>&1
